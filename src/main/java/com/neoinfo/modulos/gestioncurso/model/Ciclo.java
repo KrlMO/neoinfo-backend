@@ -11,7 +11,10 @@ import java.util.Date;
  * @author ASUS
  */
 public class Ciclo {
-
+    private int id_ciclo;
+    private String descripcion;
+    private Date fecha_incio;
+    private Date fecha_fin;
     /**
      * @return the id_ciclo
      */
@@ -67,8 +70,5 @@ public class Ciclo {
     public void setFecha_fin(Date fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
-    private int id_ciclo;
-    private String descripcion;
-    private Date fecha_incio;
-    private Date fecha_fin;
+
 }
