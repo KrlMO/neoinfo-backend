@@ -12,27 +12,27 @@ import java.util.Date;
  *
  * @author calmo
  */
-public class Compra {
-    private int idCompra;
+public class Venta {
+    private int idVenta;
     private Date fechaCompra;
     private double montoTotal;
     private int idCliente;
     private ArrayList<Curso> cursosSeleccionados;
 
-    public Compra(int idCompra, Date fechaCompra, double montoTotal, int idCliente, ArrayList<Curso> cursosSeleccionados) {
-        this.idCompra = idCompra;
+    public Venta(int idVenta, Date fechaCompra, double montoTotal, int idCliente, ArrayList<Curso> cursosSeleccionados) {
+        this.idVenta = idVenta;
         this.fechaCompra = fechaCompra;
         this.montoTotal = montoTotal;
         this.idCliente = idCliente;
         this.cursosSeleccionados = cursosSeleccionados;
     }
 
-    public int getIdCompra() {
-        return idCompra;
+    public int getIdVenta() {
+        return idVenta;
     }
 
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
+    public void setIdVenta(int idVenta) {
+        this.idVenta = idVenta;
     }
 
     public Date getFechaCompra() {
@@ -66,6 +66,7 @@ public class Compra {
     public void setCursosSeleccionados(ArrayList<Curso> cursosSeleccionados) {
         this.cursosSeleccionados = cursosSeleccionados;
     }
+
     
     
 }

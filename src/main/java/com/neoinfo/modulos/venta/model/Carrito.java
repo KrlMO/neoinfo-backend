@@ -11,13 +11,13 @@ package com.neoinfo.modulos.venta.model;
 public class Carrito {
     private String idCarrito;
     private int idCliente;
-    private Compra compra;
+    private Venta venta;
     private double montoFinal;
 
-    public Carrito(String idCarrito, int idCliente, Compra compra, double montoFinal) {
+    public Carrito(String idCarrito, int idCliente, Venta venta, double montoFinal) {
         this.idCarrito = idCarrito;
         this.idCliente = idCliente;
-        this.compra = compra;
+        this.venta = venta;
         this.montoFinal = montoFinal;
     }
 
@@ -37,12 +37,12 @@ public class Carrito {
         this.idCliente = idCliente;
     }
 
-    public Compra getCompra() {
-        return compra;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setCompra(Compra compra) {
-        this.compra = compra;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public double getMontoFinal() {
