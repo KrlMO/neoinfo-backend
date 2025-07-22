@@ -9,10 +9,6 @@ package com.neoinfo.modulos.gestioncurso.model;
  * @author ASUS
  */
 public class Material {
-    enum TipoMaterial{
-        VIDEO, DOCUMENTO, REUNION
-    }
-    
     private int id_material;
     private String url; // lo colocamos como string?
     private TipoMaterial tipo;
