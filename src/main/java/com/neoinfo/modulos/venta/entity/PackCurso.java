@@ -2,22 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neoinfo.modulos.venta.model;
+package com.neoinfo.modulos.venta.entity;
 
-import com.neoinfo.modulos.gestioncurso.model.Curso;
+import com.neoinfo.modulos.gestioncurso.entity.Curso;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
 
 /**
  *
  * @author calmo
  */
-public class PackCurso {
+@Entity
+public class PackCurso extends Pack{
+    @ManyToMany
     private ArrayList<Curso> cursos;
-    private double precio;
 
-    public PackCurso(ArrayList<Curso> cursos, double precio) {
+    public PackCurso(ArrayList<Curso> cursos, Long idPack, String Nombre, double precio) {
+        super(idPack, Nombre, precio);
         this.cursos = cursos;
-        this.precio = precio;
     }
 
     public ArrayList<Curso> getCursos() {
@@ -26,15 +29,5 @@ public class PackCurso {
 
     public void setCursos(ArrayList<Curso> cursos) {
         this.cursos = cursos;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-    
-    
+    }    
 }

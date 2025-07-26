@@ -2,9 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neoinfo.modulos.venta.model;
+package com.neoinfo.modulos.venta.entity;
 
-import com.neoinfo.modulos.gestioncurso.model.Curso;
+import com.neoinfo.modulos.auth.entity.Usuario;
+import com.neoinfo.modulos.gestioncurso.entity.Curso;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,26 +21,42 @@ import java.util.Date;
  *
  * @author calmo
  */
+@Entity
 public class Venta {
-    private int idVenta;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idVenta;
     private Date fechaCompra;
     private double montoTotal;
-    private int idCliente;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario cliente;
+
+    @ManyToMany
+    @JoinTable(
+            name = "venta_curso",
+            joinColumns = @JoinColumn(name = "venta_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
     private ArrayList<Curso> cursosSeleccionados;
 
-    public Venta(int idVenta, Date fechaCompra, double montoTotal, int idCliente, ArrayList<Curso> cursosSeleccionados) {
+    public Venta(Long idVenta, Date fechaCompra, double montoTotal, Usuario cliente, ArrayList<Curso> cursosSeleccionados) {
         this.idVenta = idVenta;
         this.fechaCompra = fechaCompra;
         this.montoTotal = montoTotal;
-        this.idCliente = idCliente;
+        this.cliente = cliente;
         this.cursosSeleccionados = cursosSeleccionados;
     }
 
-    public int getIdVenta() {
+    public Venta() {
+    }
+
+    public Long getIdVenta() {
         return idVenta;
     }
 
-    public void setIdVenta(int idVenta) {
+    public void setIdVenta(Long idVenta) {
         this.idVenta = idVenta;
     }
 
@@ -51,12 +76,12 @@ public class Venta {
         this.montoTotal = montoTotal;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public Usuario getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(Usuario cliente) {
+        this.cliente = cliente;
     }
 
     public ArrayList<Curso> getCursosSeleccionados() {
@@ -67,6 +92,5 @@ public class Venta {
         this.cursosSeleccionados = cursosSeleccionados;
     }
 
-    
     
 }

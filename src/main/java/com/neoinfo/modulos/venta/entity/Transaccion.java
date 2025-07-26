@@ -2,37 +2,61 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neoinfo.modulos.venta.model;
+package com.neoinfo.modulos.venta.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import java.util.Date;
 
 /**
  *
  * @author calmo
  */
+@Entity
 public class Transaccion {
-    private String idTransaccion;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idTransaccion;
+    private String codigo;
     private Date fechaTransaccion;
     private double monto;
     private String estado;
     private String metodoPago;
-    private int codCompra;
+    @ManyToOne
+    @JoinColumn(name = "venta_id")
+    private Venta venta;
 
-    public Transaccion(String idTransaccion, Date fechaTransaccion, double monto, String estado, String metodoPago, int codCompra) {
+    public Transaccion() {
+    }
+
+    public Transaccion(Long idTransaccion, String codigo, Date fechaTransaccion, double monto, String estado, String metodoPago, Venta venta) {
         this.idTransaccion = idTransaccion;
+        this.codigo = codigo;
         this.fechaTransaccion = fechaTransaccion;
         this.monto = monto;
         this.estado = estado;
         this.metodoPago = metodoPago;
-        this.codCompra = codCompra;
+        this.venta = venta;
     }
 
-    public String getIdTransaccion() {
+    public Long getIdTransaccion() {
         return idTransaccion;
     }
 
-    public void setIdTransaccion(String idTransaccion) {
+    public void setIdTransaccion(Long idTransaccion) {
         this.idTransaccion = idTransaccion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Date getFechaTransaccion() {
@@ -67,13 +91,13 @@ public class Transaccion {
         this.metodoPago = metodoPago;
     }
 
-    public int getCodCompra() {
-        return codCompra;
+    public Venta getVenta() {
+        return venta;
     }
 
-    public void setCodCompra(int codCompra) {
-        this.codCompra = codCompra;
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
-    
-    
+
+     
 }

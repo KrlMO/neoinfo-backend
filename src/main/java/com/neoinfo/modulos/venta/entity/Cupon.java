@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neoinfo.modulos.venta.model;
+package com.neoinfo.modulos.venta.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

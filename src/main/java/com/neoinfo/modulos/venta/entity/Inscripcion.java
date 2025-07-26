@@ -2,9 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.neoinfo.modulos.venta.model;
+package com.neoinfo.modulos.venta.entity;
 
-import com.neoinfo.modulos.gestioncurso.model.Curso;
+import com.neoinfo.modulos.gestioncurso.entity.Curso;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,22 +17,26 @@ import java.util.Date;
  *
  * @author calmo
  */
+@Entity
 public class Inscripcion {
-    private String idInscripcion;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idInscripcion;
+    @ManyToMany
     private ArrayList<Curso> cursosInscritos;
     private Date fechaInscripcion;
 
-    public Inscripcion(String idInscripcion, ArrayList<Curso> cursosInscritos, Date fechaInscripcion) {
+    public Inscripcion(Long idInscripcion, ArrayList<Curso> cursosInscritos, Date fechaInscripcion) {
         this.idInscripcion = idInscripcion;
         this.cursosInscritos = cursosInscritos;
         this.fechaInscripcion = fechaInscripcion;
     }
 
-    public String getIdInscripcion() {
+    public Long getIdInscripcion() {
         return idInscripcion;
     }
 
-    public void setIdInscripcion(String idInscripcion) {
+    public void setIdInscripcion(Long idInscripcion) {
         this.idInscripcion = idInscripcion;
     }
 
@@ -46,6 +55,4 @@ public class Inscripcion {
     public void setFechaInscripcion(Date fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
-    
-    
 }
