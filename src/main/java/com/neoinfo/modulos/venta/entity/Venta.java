@@ -16,6 +16,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -39,17 +40,16 @@ public class Venta {
             joinColumns = @JoinColumn(name = "venta_id"),
             inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private ArrayList<Curso> cursosSeleccionados;
+    private List<Curso> cursosSeleccionados = new ArrayList<>();
 
-    public Venta(Long idVenta, Date fechaCompra, double montoTotal, Usuario cliente, ArrayList<Curso> cursosSeleccionados) {
+    public Venta() {
+    }
+
+    public Venta(Long idVenta, Date fechaCompra, double montoTotal, Usuario cliente) {
         this.idVenta = idVenta;
         this.fechaCompra = fechaCompra;
         this.montoTotal = montoTotal;
         this.cliente = cliente;
-        this.cursosSeleccionados = cursosSeleccionados;
-    }
-
-    public Venta() {
     }
 
     public Long getIdVenta() {
@@ -84,13 +84,14 @@ public class Venta {
         this.cliente = cliente;
     }
 
-    public ArrayList<Curso> getCursosSeleccionados() {
+    public List<Curso> getCursosSeleccionados() {
         return cursosSeleccionados;
     }
 
-    public void setCursosSeleccionados(ArrayList<Curso> cursosSeleccionados) {
+    public void setCursosSeleccionados(List<Curso> cursosSeleccionados) {
         this.cursosSeleccionados = cursosSeleccionados;
     }
 
+    
     
 }

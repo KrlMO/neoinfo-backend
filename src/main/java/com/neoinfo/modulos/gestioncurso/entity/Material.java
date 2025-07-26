@@ -4,55 +4,70 @@
  */
 package com.neoinfo.modulos.gestioncurso.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
 /**
  *
  * @author ASUS
  */
+@Entity
 public class Material {
-    private int id_material;
-    private String url; // lo colocamos como string?
-    private TipoMaterial tipo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idMaterial;
+    private String url;
+    @Enumerated(EnumType.STRING)
+    private TipoMaterial tipoMaterial;
+    @ManyToOne
+    private Evaluacion evaluacion;
 
-    /**
-     * @return the id_material
-     */
-    public int getId_material() {
-        return id_material;
+    public Material() {
     }
 
-    /**
-     * @param id_material the id_material to set
-     */
-    public void setId_material(int id_material) {
-        this.id_material = id_material;
+    public Material(int idMaterial, String url, TipoMaterial tipoMaterial, Evaluacion evaluacion) {
+        this.idMaterial = idMaterial;
+        this.url = url;
+        this.tipoMaterial = tipoMaterial;
+        this.evaluacion = evaluacion;
     }
 
-    /**
-     * @return the url
-     */
+    public int getIdMaterial() {
+        return idMaterial;
+    }
+
+    public void setIdMaterial(int idMaterial) {
+        this.idMaterial = idMaterial;
+    }
+
     public String getUrl() {
         return url;
     }
 
-    /**
-     * @param url the url to set
-     */
     public void setUrl(String url) {
         this.url = url;
     }
 
-    /**
-     * @return the tipo
-     */
-    public TipoMaterial getTipo() {
-        return tipo;
+    public TipoMaterial getTipoMaterial() {
+        return tipoMaterial;
     }
 
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(TipoMaterial tipo) {
-        this.tipo = tipo;
+    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+        this.tipoMaterial = tipoMaterial;
     }
-   
+
+    public Evaluacion getEvaluacion() {
+        return evaluacion;
+    }
+
+    public void setEvaluacion(Evaluacion evaluacion) {
+        this.evaluacion = evaluacion;
+    }
+    
+    
 }

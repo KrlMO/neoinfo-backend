@@ -4,54 +4,43 @@
  */
 package com.neoinfo.modulos.venta.entity;
 
+import com.neoinfo.modulos.auth.entity.Usuario;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author calmo
  */
+@Entity
 public class Carrito {
-    private String idCarrito;
-    private int idCliente;
-    private Venta venta;
-    private double montoFinal;
 
-    public Carrito(String idCarrito, int idCliente, Venta venta, double montoFinal) {
-        this.idCarrito = idCarrito;
-        this.idCliente = idCliente;
-        this.venta = venta;
-        this.montoFinal = montoFinal;
-    }
-
-    public String getIdCarrito() {
-        return idCarrito;
-    }
-
-    public void setIdCarrito(String idCarrito) {
-        this.idCarrito = idCarrito;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public Venta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(Venta venta) {
-        this.venta = venta;
-    }
-
-    public double getMontoFinal() {
-        return montoFinal;
-    }
-
-    public void setMontoFinal(double montoFinal) {
-        this.montoFinal = montoFinal;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCarrito;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario cliente;
+    @ManyToOne
+    @JoinColumn(name="venta_id")
     
+    @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CarritoItem> items = new ArrayList<>();
+    
+    @ManyToOne
+    @JoinColumn(name = "cupon_id")
+    private Cupon cuponGlobal;
+    
+    private double montoFinal;
+    
+    private boolean activo = true;
     
 }

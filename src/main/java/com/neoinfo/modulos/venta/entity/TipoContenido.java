@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
  */
-package com.neoinfo.modulos.gestioncurso.entity;
+package com.neoinfo.modulos.venta.entity;
 
 /**
  *
- * @author calmo
+ * @author carlosmo
  */
-public enum TipoMaterial {
-    VIDEO, DOCUMENTO, REUNION;
+public enum TipoContenido {
+    CURSO, EVALUACION
 }

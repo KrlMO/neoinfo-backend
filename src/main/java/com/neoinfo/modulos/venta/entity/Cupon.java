@@ -4,12 +4,18 @@
  */
 package com.neoinfo.modulos.venta.entity;
 
+import com.neoinfo.modulos.gestioncurso.entity.Curso;
+import com.neoinfo.modulos.gestioncurso.entity.Evaluacion;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,86 +32,21 @@ public class Cupon {
     private double descuentoMonto;
     private LocalDate fechaCreacion;
     private LocalDate fechaExpiracion;
-    private int[] cursosIds;
+    @ManyToMany
+    @JoinTable(
+            name = "cupon_curso",
+            joinColumns = @JoinColumn(name = "cupon_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
+    private List<Curso> cursosAplicables = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "cupon_evaluacion",
+            joinColumns = @JoinColumn(name = "cupon_id"),
+            inverseJoinColumns = @JoinColumn(name = "evaluacion_id")
+    )
+    private List<Evaluacion> evaluacionesAplicables = new ArrayList<>();
     private double montoMinimo;
 
-    public Cupon(Long idCupon, String codigo, Boolean descuentoPorcentual, double descuentoMonto, LocalDate fechaCreacion, LocalDate fechaExpiracion, int[] cursosIds, double montoMinimo) {
-        this.idCupon = idCupon;
-        this.codigo = codigo;
-        this.descuentoPorcentual = descuentoPorcentual;
-        this.descuentoMonto = descuentoMonto;
-        this.fechaCreacion = fechaCreacion;
-        this.fechaExpiracion = fechaExpiracion;
-        this.cursosIds = cursosIds;
-        this.montoMinimo = montoMinimo;
-    }
-
-    public Cupon() {
-    }
-
-    public Long getIdCupon() {
-        return idCupon;
-    }
-
-    public void setIdCupon(Long idCupon) {
-        this.idCupon = idCupon;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public Boolean getDescuentoPorcentual() {
-        return descuentoPorcentual;
-    }
-
-    public void setDescuentoPorcentual(Boolean descuentoPorcentual) {
-        this.descuentoPorcentual = descuentoPorcentual;
-    }
-
-    public double getDescuentoMonto() {
-        return descuentoMonto;
-    }
-
-    public void setDescuentoMonto(double descuentoMonto) {
-        this.descuentoMonto = descuentoMonto;
-    }
-
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public LocalDate getFechaExpiracion() {
-        return fechaExpiracion;
-    }
-
-    public void setFechaExpiracion(LocalDate fechaExpiracion) {
-        this.fechaExpiracion = fechaExpiracion;
-    }
-
-    public int[] getCursosIds() {
-        return cursosIds;
-    }
-
-    public void setCursosIds(int[] cursosIds) {
-        this.cursosIds = cursosIds;
-    }
-
-    public double getMontoMinimo() {
-        return montoMinimo;
-    }
-
-    public void setMontoMinimo(double montoMinimo) {
-        this.montoMinimo = montoMinimo;
-    }
-    
-    
 }
