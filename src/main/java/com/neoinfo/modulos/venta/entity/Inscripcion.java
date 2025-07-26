@@ -9,9 +9,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -19,14 +21,23 @@ import java.util.Date;
  */
 @Entity
 public class Inscripcion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInscripcion;
     @ManyToMany
+    @JoinTable(
+            name = "inscripcion_curso",
+            joinColumns = @JoinColumn(name = "inscripcion_id"),
+            inverseJoinColumns = @JoinColumn(name = "curso_id")
+    )
     private ArrayList<Curso> cursosInscritos;
-    private Date fechaInscripcion;
+    private LocalDate fechaInscripcion;
 
-    public Inscripcion(Long idInscripcion, ArrayList<Curso> cursosInscritos, Date fechaInscripcion) {
+    public Inscripcion() {
+    }
+
+    public Inscripcion(Long idInscripcion, ArrayList<Curso> cursosInscritos, LocalDate fechaInscripcion) {
         this.idInscripcion = idInscripcion;
         this.cursosInscritos = cursosInscritos;
         this.fechaInscripcion = fechaInscripcion;
@@ -48,11 +59,14 @@ public class Inscripcion {
         this.cursosInscritos = cursosInscritos;
     }
 
-    public Date getFechaInscripcion() {
+    public LocalDate getFechaInscripcion() {
         return fechaInscripcion;
     }
 
-    public void setFechaInscripcion(Date fechaInscripcion) {
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
+    
+    
+
 }

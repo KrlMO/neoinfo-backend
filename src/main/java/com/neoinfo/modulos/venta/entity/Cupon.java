@@ -4,24 +4,32 @@
  */
 package com.neoinfo.modulos.venta.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
  * @author calmo
  */
+@Entity
 public class Cupon {
-    private String idCupon;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idCupon;
     private String codigo;
     private Boolean descuentoPorcentual;
     private double descuentoMonto;
-    private Date fechaCreacion;
-    private Date fechaExpiracion;
+    private LocalDate fechaCreacion;
+    private LocalDate fechaExpiracion;
     private int[] cursosIds;
     private double montoMinimo;
 
-    public Cupon(String idCupon, String codigo, Boolean descuentoPorcentual, double descuentoMonto, Date fechaCreacion, Date fechaExpiracion, int[] cursosIds, double montoMinimo) {
+    public Cupon(Long idCupon, String codigo, Boolean descuentoPorcentual, double descuentoMonto, LocalDate fechaCreacion, LocalDate fechaExpiracion, int[] cursosIds, double montoMinimo) {
         this.idCupon = idCupon;
         this.codigo = codigo;
         this.descuentoPorcentual = descuentoPorcentual;
@@ -32,11 +40,14 @@ public class Cupon {
         this.montoMinimo = montoMinimo;
     }
 
-    public String getIdCupon() {
+    public Cupon() {
+    }
+
+    public Long getIdCupon() {
         return idCupon;
     }
 
-    public void setIdCupon(String idCupon) {
+    public void setIdCupon(Long idCupon) {
         this.idCupon = idCupon;
     }
 
@@ -64,19 +75,19 @@ public class Cupon {
         this.descuentoMonto = descuentoMonto;
     }
 
-    public Date getFechaCreacion() {
+    public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
+    public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Date getFechaExpiracion() {
+    public LocalDate getFechaExpiracion() {
         return fechaExpiracion;
     }
 
-    public void setFechaExpiracion(Date fechaExpiracion) {
+    public void setFechaExpiracion(LocalDate fechaExpiracion) {
         this.fechaExpiracion = fechaExpiracion;
     }
 
