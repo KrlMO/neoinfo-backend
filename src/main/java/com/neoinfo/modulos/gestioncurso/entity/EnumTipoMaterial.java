@@ -8,6 +8,6 @@ package com.neoinfo.modulos.gestioncurso.entity;
  *
  * @author calmo
  */
-public enum TipoMaterial {
+public enum EnumTipoMaterial {
     VIDEO, DOCUMENTO, REUNION;
 }

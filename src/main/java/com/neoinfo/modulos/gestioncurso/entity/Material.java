@@ -23,14 +23,14 @@ public class Material {
     private int idMaterial;
     private String url;
     @Enumerated(EnumType.STRING)
-    private TipoMaterial tipoMaterial;
+    private EnumTipoMaterial tipoMaterial;
     @ManyToOne
     private Evaluacion evaluacion;
 
     public Material() {
     }
 
-    public Material(int idMaterial, String url, TipoMaterial tipoMaterial, Evaluacion evaluacion) {
+    public Material(int idMaterial, String url, EnumTipoMaterial tipoMaterial, Evaluacion evaluacion) {
         this.idMaterial = idMaterial;
         this.url = url;
         this.tipoMaterial = tipoMaterial;
@@ -53,11 +53,11 @@ public class Material {
         this.url = url;
     }
 
-    public TipoMaterial getTipoMaterial() {
+    public EnumTipoMaterial getTipoMaterial() {
         return tipoMaterial;
     }
 
-    public void setTipoMaterial(TipoMaterial tipoMaterial) {
+    public void setTipoMaterial(EnumTipoMaterial tipoMaterial) {
         this.tipoMaterial = tipoMaterial;
     }
 

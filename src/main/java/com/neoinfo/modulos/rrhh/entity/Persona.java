@@ -10,21 +10,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  *
  * @author calmo
  */
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Table(name = "persona")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Persona {
     @Id
@@ -33,19 +27,19 @@ public class Persona {
     private String nombres;
     private String apellidos;
     private String telefono;
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String DNI;
 
-    public Persona(Long id, String nombres, String apellidos, String telefono, Date fechaNacimiento, String DNI) {
+    public Persona() {
+    }
+    
+    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.DNI = DNI;
-    }
-
-    public Persona() {
     }
 
     public Long getId() {
@@ -80,11 +74,11 @@ public class Persona {
         this.telefono = telefono;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -95,4 +89,6 @@ public class Persona {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+
+    
 }

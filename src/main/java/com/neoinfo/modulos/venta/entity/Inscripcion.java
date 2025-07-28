@@ -5,6 +5,7 @@
 package com.neoinfo.modulos.venta.entity;
 
 import com.neoinfo.modulos.gestioncurso.entity.Curso;
+import com.neoinfo.modulos.rrhh.entity.Alumno;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +13,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,16 +34,20 @@ public class Inscripcion {
             joinColumns = @JoinColumn(name = "inscripcion_id"),
             inverseJoinColumns = @JoinColumn(name = "curso_id")
     )
-    private ArrayList<Curso> cursosInscritos;
+    private List<Curso> cursosInscritos = new ArrayList<Curso>();
     private LocalDate fechaInscripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "alumno_id")
+    private Alumno alumno;
 
     public Inscripcion() {
     }
 
-    public Inscripcion(Long idInscripcion, ArrayList<Curso> cursosInscritos, LocalDate fechaInscripcion) {
+    public Inscripcion(Long idInscripcion, LocalDate fechaInscripcion, Alumno alumno) {
         this.idInscripcion = idInscripcion;
-        this.cursosInscritos = cursosInscritos;
         this.fechaInscripcion = fechaInscripcion;
+        this.alumno = alumno;
     }
 
     public Long getIdInscripcion() {
@@ -51,11 +58,11 @@ public class Inscripcion {
         this.idInscripcion = idInscripcion;
     }
 
-    public ArrayList<Curso> getCursosInscritos() {
+    public List<Curso> getCursosInscritos() {
         return cursosInscritos;
     }
 
-    public void setCursosInscritos(ArrayList<Curso> cursosInscritos) {
+    public void setCursosInscritos(List<Curso> cursosInscritos) {
         this.cursosInscritos = cursosInscritos;
     }
 
@@ -66,7 +73,14 @@ public class Inscripcion {
     public void setFechaInscripcion(LocalDate fechaInscripcion) {
         this.fechaInscripcion = fechaInscripcion;
     }
-    
-    
 
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    
 }

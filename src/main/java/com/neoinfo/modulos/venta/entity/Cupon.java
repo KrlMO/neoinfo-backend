@@ -4,6 +4,7 @@
  */
 package com.neoinfo.modulos.venta.entity;
 
+import com.neoinfo.modulos.gestioncurso.entity.Ciclo;
 import com.neoinfo.modulos.gestioncurso.entity.Curso;
 import com.neoinfo.modulos.gestioncurso.entity.Evaluacion;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +50,7 @@ public class Cupon {
     )
     private List<Evaluacion> evaluacionesAplicables = new ArrayList<>();
     private double montoMinimo;
+    @ManyToOne
+    private Ciclo cicloAplicable;
 
 }

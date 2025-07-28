@@ -4,42 +4,66 @@
  */
 package com.neoinfo.modulos.rrhh.entity;
 
+import com.neoinfo.modulos.gestioncurso.entity.Ciclo;
 import com.neoinfo.modulos.gestioncurso.entity.Curso;
 import com.neoinfo.modulos.venta.entity.Inscripcion;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author calmo
  */
 @Entity
+@Table(name = "alumno")
 public class Alumno extends Persona{
-    private ArrayList<Curso> cursosInscritos;
-    private ArrayList<Inscripcion> inscripciones;
-    /*
-    public Alumno(ArrayList<Curso> cursosInscritos, ArrayList<Inscripcion> inscripciones, Long id, String nombres, String apellidos, String telefono, Date fechaNacimiento, String DNI) {
+    @OneToMany(mappedBy = "alumno", cascade = CascadeType.ALL)
+    private List<Inscripcion> inscripciones = new ArrayList<Inscripcion>();
+    
+    private LocalDate fechaRegistro;
+    
+    @ManyToOne
+    private Ciclo cicloActual;
+
+
+    public Alumno(LocalDate fechaRegistro, Ciclo cicloActual, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
         super(id, nombres, apellidos, telefono, fechaNacimiento, DNI);
-        this.cursosInscritos = cursosInscritos;
-        this.inscripciones = inscripciones;
+        this.fechaRegistro = fechaRegistro;
+        this.cicloActual = cicloActual;
     }
 
-    public ArrayList<Curso> getCursosInscritos() {
-        return cursosInscritos;
-    }
-
-    public void setCursosInscritos(ArrayList<Curso> cursosInscritos) {
-        this.cursosInscritos = cursosInscritos;
-    }
-
-    public ArrayList<Inscripcion> getInscripciones() {
+    public List<Inscripcion> getInscripciones() {
         return inscripciones;
     }
 
-    public void setInscripciones(ArrayList<Inscripcion> inscripciones) {
+    public void setInscripciones(List<Inscripcion> inscripciones) {
         this.inscripciones = inscripciones;
     }
 
-    */
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Ciclo getCicloActual() {
+        return cicloActual;
+    }
+
+    public void setCicloActual(Ciclo cicloActual) {
+        this.cicloActual = cicloActual;
+    }
+
+    
+
+    
 }

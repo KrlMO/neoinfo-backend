@@ -34,12 +34,12 @@ public class CarritoItem {
     @ManyToOne
     private Cupon cuponAplicado;
     @Enumerated(EnumType.STRING)
-    private TipoContenido tipoConetenido;
+    private EnumTipoContenido tipoConetenido;
 
     public CarritoItem() {
     }
 
-    public CarritoItem(Long id, Carrito carrito, Evaluacion evaluacion, Curso curso, double precio, Cupon cuponAplicado, TipoContenido tipoConetenido) {
+    public CarritoItem(Long id, Carrito carrito, Evaluacion evaluacion, Curso curso, double precio, Cupon cuponAplicado, EnumTipoContenido tipoConetenido) {
         this.id = id;
         this.carrito = carrito;
         this.evaluacion = evaluacion;
@@ -97,11 +97,11 @@ public class CarritoItem {
         this.cuponAplicado = cuponAplicado;
     }
 
-    public TipoContenido getTipoConetenido() {
+    public EnumTipoContenido getTipoConetenido() {
         return tipoConetenido;
     }
 
-    public void setTipoConetenido(TipoContenido tipoConetenido) {
+    public void setTipoConetenido(EnumTipoContenido tipoConetenido) {
         this.tipoConetenido = tipoConetenido;
     }
     

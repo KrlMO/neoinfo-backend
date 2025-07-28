@@ -4,16 +4,21 @@
  */
 package com.neoinfo.modulos.rrhh.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
  *
  * @author calmo
  */
+@Entity
+@Table(name = "administrador")
 public class Administrador extends Persona{
     private Boolean estado;
-    /*
-    public Administrador(Boolean estado, Long id, String nombres, String apellidos, String telefono, Date fechaNacimiento, String DNI) {
+
+    public Administrador(Boolean estado, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
         super(id, nombres, apellidos, telefono, fechaNacimiento, DNI);
         this.estado = estado;
     }
@@ -25,6 +30,6 @@ public class Administrador extends Persona{
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    */
+    
     
 }
