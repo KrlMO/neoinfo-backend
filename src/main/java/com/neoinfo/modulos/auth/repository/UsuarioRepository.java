@@ -1,3 +1,5 @@
+package com.neoinfo.modulos.auth.repository;
+
 
 import com.neoinfo.modulos.auth.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
