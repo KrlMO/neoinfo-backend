@@ -25,13 +25,10 @@ public class Instructor extends Persona {
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private List<Curso> cursosAsignados = new ArrayList<Curso>();
 
-    public Instructor() {
+    public Instructor(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String DNI) {
+        super(id, nombres, apellidos, telefono, fechaNacimiento, email, DNI);
     }
 
-    public Instructor(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
-        super(id, nombres, apellidos, telefono, fechaNacimiento, DNI);
-    }
-    
     public List<Curso> getCursosAsignados() {
         return cursosAsignados;
     }
@@ -40,5 +37,6 @@ public class Instructor extends Persona {
         this.cursosAsignados = cursosAsignados;
     }
 
+    
     
 }

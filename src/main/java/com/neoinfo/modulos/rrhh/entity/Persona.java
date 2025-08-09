@@ -28,17 +28,19 @@ public class Persona {
     private String apellidos;
     private String telefono;
     private LocalDate fechaNacimiento;
+    private String email;
     private String DNI;
 
     public Persona() {
     }
-    
-    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
+
+    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String DNI) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
         this.DNI = DNI;
     }
 
@@ -82,6 +84,14 @@ public class Persona {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getDNI() {
         return DNI;
     }
@@ -89,6 +99,7 @@ public class Persona {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
-
+    
+    
     
 }
