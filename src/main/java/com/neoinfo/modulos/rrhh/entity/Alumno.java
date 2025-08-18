@@ -32,9 +32,8 @@ public class Alumno extends Persona{
     @ManyToOne
     private Ciclo cicloActual;
 
-
-    public Alumno(LocalDate fechaRegistro, Ciclo cicloActual, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
-        super(id, nombres, apellidos, telefono, fechaNacimiento, DNI);
+    public Alumno(LocalDate fechaRegistro, Ciclo cicloActual, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String DNI) {
+        super(id, nombres, apellidos, telefono, fechaNacimiento, email, DNI);
         this.fechaRegistro = fechaRegistro;
         this.cicloActual = cicloActual;
     }
@@ -64,6 +63,5 @@ public class Alumno extends Persona{
     }
 
     
-
-    
+       
 }
