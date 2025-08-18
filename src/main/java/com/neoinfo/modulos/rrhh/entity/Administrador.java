@@ -18,8 +18,8 @@ import java.util.Date;
 public class Administrador extends Persona{
     private Boolean estado;
 
-    public Administrador(Boolean estado, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String DNI) {
-        super(id, nombres, apellidos, telefono, fechaNacimiento, DNI);
+    public Administrador(Boolean estado, Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String DNI) {
+        super(id, nombres, apellidos, telefono, fechaNacimiento, email, DNI);
         this.estado = estado;
     }
 
@@ -30,6 +30,7 @@ public class Administrador extends Persona{
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-    
+
+        
     
 }
