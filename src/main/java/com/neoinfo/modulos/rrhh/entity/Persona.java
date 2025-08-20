@@ -4,6 +4,8 @@
  */
 package com.neoinfo.modulos.rrhh.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,12 +26,24 @@ public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonProperty("nombres")
     private String nombres;
+
+    @JsonProperty("apellidos")
     private String apellidos;
+
+    @JsonProperty("telefono")
     private String telefono;
+
+    @JsonProperty("fechaNacimiento")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaNacimiento;
+
+    @JsonProperty("email")
     private String email;
-    private String DNI;
+
+    @JsonProperty("dni")
+    private String dni;
 
     public Persona() {
     }
@@ -41,7 +55,7 @@ public class Persona {
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.email = email;
-        this.DNI = DNI;
+        this.dni = DNI;
     }
 
     public Long getId() {
@@ -92,14 +106,25 @@ public class Persona {
         this.email = email;
     }
 
-    public String getDNI() {
-        return DNI;
+    public String getDni() {
+        return dni;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setDni(String DNI) {
+        this.dni = DNI;
     }
     
-    
+    @Override
+public String toString() {
+    return "Persona{" +
+            "id=" + id +
+            ", nombres='" + nombres + '\'' +
+            ", apellidos='" + apellidos + '\'' +
+            ", telefono='" + telefono + '\'' +
+            ", fechaNacimiento=" + fechaNacimiento +
+            ", email='" + email + '\'' +
+            
+            '}';
+}
     
 }
