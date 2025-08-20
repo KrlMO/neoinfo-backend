@@ -5,7 +5,7 @@
 package com.neoinfo.modulos.venta.entity;
 
 import com.neoinfo.modulos.gestioncurso.entity.Curso;
-import com.neoinfo.modulos.rrhh.entity.Alumno;
+import com.neoinfo.modulos.rrhh.entity.Persona;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -39,16 +39,7 @@ public class Inscripcion {
 
     @ManyToOne
     @JoinColumn(name = "alumno_id")
-    private Alumno alumno;
-
-    public Inscripcion() {
-    }
-
-    public Inscripcion(Long idInscripcion, LocalDate fechaInscripcion, Alumno alumno) {
-        this.idInscripcion = idInscripcion;
-        this.fechaInscripcion = fechaInscripcion;
-        this.alumno = alumno;
-    }
+    private Persona alumno;
 
     public Long getIdInscripcion() {
         return idInscripcion;
@@ -74,11 +65,20 @@ public class Inscripcion {
         this.fechaInscripcion = fechaInscripcion;
     }
 
-    public Alumno getAlumno() {
+    public Persona getAlumno() {
         return alumno;
     }
 
-    public void setAlumno(Alumno alumno) {
+    public void setAlumno(Persona alumno) {
+        this.alumno = alumno;
+    }
+
+    public Inscripcion() {
+    }
+
+    public Inscripcion(Long idInscripcion, LocalDate fechaInscripcion, Persona alumno) {
+        this.idInscripcion = idInscripcion;
+        this.fechaInscripcion = fechaInscripcion;
         this.alumno = alumno;
     }
 
