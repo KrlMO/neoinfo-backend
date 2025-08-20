@@ -12,9 +12,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
+
 /**
  *
  * @author calmo
@@ -23,6 +26,7 @@ import java.util.Date;
 @Table(name = "persona")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Persona {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,17 +49,22 @@ public class Persona {
     @JsonProperty("dni")
     private String dni;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "universidad_id", referencedColumnName = "id")
+    private Universidad universidad;
+
     public Persona() {
     }
 
-    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String DNI) {
+    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni, Universidad universidad) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.email = email;
-        this.dni = DNI;
+        this.dni = dni;
+        this.universidad = universidad;
     }
 
     public Long getId() {
@@ -110,21 +119,29 @@ public class Persona {
         return dni;
     }
 
-    public void setDni(String DNI) {
-        this.dni = DNI;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
+
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(Universidad universidad) {
+        this.universidad = universidad;
+    }
+
     
     @Override
-public String toString() {
-    return "Persona{" +
-            "id=" + id +
-            ", nombres='" + nombres + '\'' +
-            ", apellidos='" + apellidos + '\'' +
-            ", telefono='" + telefono + '\'' +
-            ", fechaNacimiento=" + fechaNacimiento +
-            ", email='" + email + '\'' +
-            
-            '}';
-}
-    
+    public String toString() {
+        return "Persona{"
+                + "id=" + id
+                + ", nombres='" + nombres + '\''
+                + ", apellidos='" + apellidos + '\''
+                + ", telefono='" + telefono + '\''
+                + ", fechaNacimiento=" + fechaNacimiento
+                + ", email='" + email + '\''
+                + '}';
+    }
+
 }
