@@ -35,9 +35,7 @@ public class PersonaController {
     }
     
     @PostMapping("/persona")
-    public ResponseEntity<Persona> crearPersona(@RequestBody Persona persona, HttpServletRequest request) throws IOException {
-        String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(">>> RAW JSON: " + body);
+    public ResponseEntity<Persona> crearPersona(@RequestBody Persona persona) {
         System.out.println(">>> Parseado: " + persona);
         return ResponseEntity.ok(persona);
     }
