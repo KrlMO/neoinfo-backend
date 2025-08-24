@@ -6,6 +6,7 @@ package com.neoinfo.modulos.rrhh.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.neoinfo.modulos.auth.entity.Usuario;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +15,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
@@ -53,10 +55,13 @@ public class Persona {
     @JoinColumn(name = "universidad_id", referencedColumnName = "id")
     private Universidad universidad;
 
+    @OneToOne(mappedBy = "persona")
+    private Usuario usuario;
+
     public Persona() {
     }
 
-    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni, Universidad universidad) {
+    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni, Universidad universidad, Usuario usuario) {
         this.id = id;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -65,6 +70,7 @@ public class Persona {
         this.email = email;
         this.dni = dni;
         this.universidad = universidad;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -131,6 +137,15 @@ public class Persona {
         this.universidad = universidad;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    
     
     @Override
     public String toString() {

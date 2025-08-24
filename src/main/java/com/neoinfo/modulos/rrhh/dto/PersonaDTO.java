@@ -4,67 +4,90 @@
  */
 package com.neoinfo.modulos.rrhh.dto;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author ASUS
  */
 public class PersonaDTO {
     private Long id;
-    private String nombres;
-    private String apellidos;
+    private String username;
+    private String name;
+    private String lastName;
+    private String email;
+    private String dni;
+    private LocalDate registerDate;
     
     
     public PersonaDTO(){
         
     }
-    
-    public PersonaDTO(Long id, String nombres, String apellidos) {
+
+    public PersonaDTO(Long id, String username, String name, String email,
+            String dni, LocalDate registerDate, String lastName) {
         this.id = id;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.dni = dni;
+        this.registerDate = registerDate;
+        this.lastName = lastName;
     }
-    
-    /**
-     * @return the id
-     */
+
     public Long getId() {
-        return this.id;
+        return id;
     }
-    
-    /**
-     * @param id the id to set
-     */
+
     public void setId(Long id) {
         this.id = id;
     }
 
-    /**
-     * @return the nombres
-     */
-    public String getNombres() {
-        return this.nombres;
+    public String getUsername() {
+        return username;
     }
 
-    /**
-     * @param nombres the nombres to set
-     */
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    /**
-     * @return the apellidos
-     */
-    public String getApellidos() {
-        return this.apellidos;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * @param apellidos the apellidos to set
-     */
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public LocalDate getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

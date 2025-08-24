@@ -6,14 +6,18 @@ package com.neoinfo.modulos.rrhh.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.neoinfo.modulos.rrhh.dto.PersonaDTO;
+import com.neoinfo.modulos.rrhh.dto.PersonaFilterDTO;
 import com.neoinfo.modulos.rrhh.entity.Persona;
 import com.neoinfo.modulos.rrhh.service.PersonaService;
+import com.neoinfo.shared.dto.ApiResponse;
+import com.neoinfo.shared.dto.PaginationDTO;
 import static io.swagger.v3.core.util.Json.mapper;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+import jdk.jfr.Name;
 import org.apache.catalina.mapper.Mapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,14 +30,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @author ASUS
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("${api.base-path}/rrhh")
 public class PersonaController {
+
     private final PersonaService personaService;
-    
-    public PersonaController(PersonaService personaService){
+
+    public PersonaController(PersonaService personaService) {
         this.personaService = personaService;
     }
-    
+
     @PostMapping("/persona")
     public ResponseEntity<Persona> crearPersona(@RequestBody Persona persona, HttpServletRequest request) throws IOException {
         String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
@@ -41,7 +46,7 @@ public class PersonaController {
         System.out.println(">>> Parseado: " + persona);
         return ResponseEntity.ok(persona);
     }
-    
+
 //    @PostMapping("/persona")
 //    public ResponseEntity<Persona> crearPersona(@RequestBody Persona persona)throws Exception{
 //        //System.out.println(">>> JSON bruto: " + rawJson);
@@ -49,7 +54,7 @@ public class PersonaController {
 //        //Persona persona = mapper.readValue(rawJson, Persona.class);
 //        System.out.println(">>> Parseado: " + persona);
 //        return ResponseEntity.ok(persona);
-////        System.out.println(">>> JSON recibido: " + persona);
+    ////        System.out.println(">>> JSON recibido: " + persona);
 ////        System.out.println(">>> Recibido: " + persona.getNombres() + " - " + persona.getApellidos());
 ////        return persona;
 //        //return personaService.crearPersona(personaDTO);
@@ -59,5 +64,10 @@ public class PersonaController {
     @GetMapping("/personas")
     public List<Persona> listar() {
         return personaService.listarPersonas();
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<ApiResponse<PaginationDTO<PersonaDTO>>> filterPeople(@RequestBody PersonaFilterDTO filter) {
+        return personaService.filterPeople(filter);
     }
 }
