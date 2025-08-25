@@ -19,7 +19,7 @@ public class PersonaSpecification {
             var predicates = cb.conjunction();
 
             if (filter.getUsername() != null && !filter.getUsername().isEmpty()) {
-                var usuarioJoin = root.join("usuario"); // el campo que agregaste en Persona
+                var usuarioJoin = root.join("usuario");
                 predicates.getExpressions().add(
                         cb.like(cb.lower(usuarioJoin.get("username")), "%" + filter.getUsername().toLowerCase() + "%")
                 );
