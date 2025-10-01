@@ -19,6 +19,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 /**
  *
@@ -46,9 +47,11 @@ public class Persona {
     private LocalDate fechaNacimiento;
 
     @JsonProperty("email")
+    @Unique
     private String email;
 
     @JsonProperty("dni")
+    @Unique
     private String dni;
 
     @ManyToOne(optional = true)
@@ -61,16 +64,13 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni, Universidad universidad, Usuario usuario) {
-        this.id = id;
+    public Persona(String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.email = email;
         this.dni = dni;
-        this.universidad = universidad;
-        this.usuario = usuario;
     }
 
     public Long getId() {

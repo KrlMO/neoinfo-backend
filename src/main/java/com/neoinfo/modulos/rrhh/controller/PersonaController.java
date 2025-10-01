@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import jdk.jfr.Name;
 import org.apache.catalina.mapper.Mapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,11 +41,13 @@ public class PersonaController {
     }
 
     @PostMapping("/persona")
-    public ResponseEntity<Persona> crearPersona(@RequestBody Persona persona, HttpServletRequest request) throws IOException {
-        String body = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-        System.out.println(">>> RAW JSON: " + body);
-        System.out.println(">>> Parseado: " + persona);
-        return ResponseEntity.ok(persona);
+    public ResponseEntity<ApiResponse<PersonaDTO>> createPersona(@RequestBody PersonaDTO persona) throws IOException {
+        try {
+            PersonaDTO creado = personaService.create(persona);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Persona registrada correctamente: "+ creado.getUsuario().getUsername(), creado));
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse<>(false, e.getMessage(), null), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 //    @PostMapping("/persona")

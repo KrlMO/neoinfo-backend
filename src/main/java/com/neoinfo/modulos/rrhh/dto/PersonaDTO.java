@@ -4,6 +4,7 @@
  */
 package com.neoinfo.modulos.rrhh.dto;
 
+import com.neoinfo.modulos.auth.dto.UsuarioDTO;
 import java.time.LocalDate;
 
 /**
@@ -12,28 +13,52 @@ import java.time.LocalDate;
  */
 public class PersonaDTO {
     private Long id;
-    private String username;
     private String name;
     private String lastName;
     private String email;
     private String dni;
+    private String phoneNumber;
+    private LocalDate birthDate;
     private LocalDate registerDate;
+    private UniversidadDTO universidad;
+    private UsuarioDTO usuario;
     
     
     public PersonaDTO(){
         
     }
 
-    public PersonaDTO(Long id, String username, String name, String email,
-            String dni, LocalDate registerDate, String lastName) {
+    public PersonaDTO(Long id, String username, String name, String lastName, 
+            String email, String dni, String phoneNumber, LocalDate birthDate, 
+            LocalDate registerDate, String password) {
         this.id = id;
-        this.username = username;
         this.name = name;
+        this.lastName = lastName;
         this.email = email;
         this.dni = dni;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
         this.registerDate = registerDate;
-        this.lastName = lastName;
     }
+
+    public UsuarioDTO getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+    public UniversidadDTO getUniversidad() {
+        return universidad;
+    }
+
+    public void setUniversidad(UniversidadDTO universidad) {
+        this.universidad = universidad;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -41,14 +66,6 @@ public class PersonaDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getName() {
@@ -90,4 +107,21 @@ public class PersonaDTO {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
 }

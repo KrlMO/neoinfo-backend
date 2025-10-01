@@ -17,6 +17,7 @@ import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 /**
  *
@@ -28,6 +29,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Unique
     private String username;
     private String password;
     @OneToOne
