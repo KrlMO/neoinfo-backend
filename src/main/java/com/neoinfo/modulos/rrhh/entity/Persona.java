@@ -21,6 +21,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
 import org.checkerframework.common.aliasing.qual.Unique;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 /**
  *
@@ -49,9 +50,11 @@ public class Persona {
 
     @JsonProperty("email")
     @Unique
+    @Unique
     private String email;
 
     @JsonProperty("dni")
+    @Unique
     @Unique
     private String dni;
 

@@ -14,15 +14,19 @@ import com.neoinfo.modulos.auth.repository.UsuarioRepository;
 import com.neoinfo.modulos.rrhh.dto.PersonaDTO;
 import com.neoinfo.modulos.rrhh.dto.PersonaFilterDTO;
 import com.neoinfo.modulos.rrhh.dto.UniversidadDTO;
+import com.neoinfo.modulos.rrhh.dto.UniversidadDTO;
 import com.neoinfo.modulos.rrhh.entity.Persona;
 import com.neoinfo.modulos.rrhh.entity.Universidad;
 import com.neoinfo.modulos.rrhh.exception.PersonaAlreadyExistsException;
 import com.neoinfo.modulos.rrhh.mapper.PersonaMapper;
 import com.neoinfo.modulos.rrhh.repository.PersonaRepository;
 import com.neoinfo.modulos.rrhh.repository.UniversidadRepository;
+import com.neoinfo.modulos.rrhh.repository.UniversidadRepository;
 import com.neoinfo.modulos.rrhh.specification.PersonaSpecification;
 import com.neoinfo.shared.dto.ApiResponse;
 import com.neoinfo.shared.dto.PaginationDTO;
+import jakarta.transaction.Transactional;
+import java.time.LocalDate;
 import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,7 +35,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +62,15 @@ public class PersonaService {
     public PersonaService(PersonaRepository personaRepository,
             UniversidadRepository universidadRepository,
             PasswordEncoder passwordEncoder, RolRepository rolRepository) {
+    public PersonaService(PersonaRepository personaRepository,
+            UniversidadRepository universidadRepository,
+            PasswordEncoder passwordEncoder, RolRepository rolRepository) {
         this.personaRepository = personaRepository;
+        this.universidadRepository = universidadRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.rolRepository = rolRepository;
+    }
+
         this.universidadRepository = universidadRepository;
         this.passwordEncoder = passwordEncoder;
         this.rolRepository = rolRepository;
