@@ -17,6 +17,7 @@ import jakarta.persistence.OneToOne;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 /**
  *
@@ -28,10 +29,10 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Unique
     private String username;
     private String password;
-    @OneToOne
-    @JoinColumn(name = "persona_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "usuario")
     private Persona persona;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -42,15 +43,15 @@ public class Usuario {
     )
     private List<Rol> roles = new ArrayList<>();
 
-    private boolean EsActivo;
+    private boolean activo;
     private LocalDate fechaRegistro;
 
-    public Usuario(Long id, String username, String password, Persona persona, boolean EsActivo, LocalDate fechaRegistro) {
+    public Usuario(Long id, String username, String password, Persona persona, boolean activo, LocalDate fechaRegistro) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.persona = persona;
-        this.EsActivo = EsActivo;
+        this.activo = activo;
         this.fechaRegistro = fechaRegistro;
     }
 
@@ -97,12 +98,12 @@ public class Usuario {
         this.roles = roles;
     }
 
-    public boolean isEsActivo() {
-        return EsActivo;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setEsActivo(boolean EsActivo) {
-        this.EsActivo = EsActivo;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
     public LocalDate getFechaRegistro() {
@@ -112,7 +113,5 @@ public class Usuario {
     public void setFechaRegistro(LocalDate fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
-    
-    
 
 }

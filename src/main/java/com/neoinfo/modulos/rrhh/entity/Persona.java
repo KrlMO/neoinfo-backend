@@ -7,6 +7,7 @@ package com.neoinfo.modulos.rrhh.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.neoinfo.modulos.auth.entity.Usuario;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.Date;
+import org.checkerframework.common.aliasing.qual.Unique;
 
 /**
  *
@@ -46,31 +48,32 @@ public class Persona {
     private LocalDate fechaNacimiento;
 
     @JsonProperty("email")
+    @Unique
     private String email;
 
     @JsonProperty("dni")
+    @Unique
     private String dni;
 
     @ManyToOne(optional = true)
     @JoinColumn(name = "universidad_id", referencedColumnName = "id")
     private Universidad universidad;
 
-    @OneToOne(mappedBy = "persona")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     public Persona() {
     }
 
-    public Persona(Long id, String nombres, String apellidos, String telefono, LocalDate fechaNacimiento, String email, String dni, Universidad universidad, Usuario usuario) {
-        this.id = id;
+    public Persona(String nombres, String apellidos, String telefono,
+            LocalDate fechaNacimiento, String email, String dni) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.email = email;
         this.dni = dni;
-        this.universidad = universidad;
-        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -145,8 +148,6 @@ public class Persona {
         this.usuario = usuario;
     }
 
-    
-    
     @Override
     public String toString() {
         return "Persona{"

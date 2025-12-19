@@ -16,7 +16,7 @@ public class PersonaFilterDTO {
     private String name;
     private String email;
     private String dni;
-    private int idRole;
+    private String role;
     private LocalDate registerDateFrom;
     private LocalDate registerDateTo;
     private int page = 0;
@@ -25,15 +25,24 @@ public class PersonaFilterDTO {
     public PersonaFilterDTO() {
     }
 
-    public PersonaFilterDTO(String username, String name, String email, String dni, int idRole, LocalDate registerDateFrom, LocalDate registerDateTo) {
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public PersonaFilterDTO(String username, String name, String email, String dni, String role, LocalDate registerDateFrom, LocalDate registerDateTo) {
         this.username = username;
         this.name = name;
         this.email = email;
         this.dni = dni;
-        this.idRole = idRole;
+        this.role = role;
         this.registerDateFrom = registerDateFrom;
         this.registerDateTo = registerDateTo;
     }
+
 
     public String getUsername() {
         return username;
@@ -65,14 +74,6 @@ public class PersonaFilterDTO {
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public int getIdRole() {
-        return idRole;
-    }
-
-    public void setIdRole(int idRole) {
-        this.idRole = idRole;
     }
 
     public LocalDate getRegisterDateFrom() {

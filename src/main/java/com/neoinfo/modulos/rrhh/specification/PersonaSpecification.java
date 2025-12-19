@@ -44,10 +44,10 @@ public class PersonaSpecification {
             }
 
 
-            if (filter.getIdRole() > 0) {
+            if (filter.getRole()!= null) {
                 var usuarioJoin = root.join("usuario");
                 var rolesJoin = usuarioJoin.join("roles");
-                predicates.getExpressions().add(cb.equal(rolesJoin.get("id"), filter.getIdRole()));
+                predicates.getExpressions().add(cb.equal(rolesJoin.get("nombre"), filter.getRole()));
             }
 
             if (filter.getRegisterDateFrom() != null) {

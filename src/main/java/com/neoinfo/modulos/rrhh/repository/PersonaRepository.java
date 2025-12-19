@@ -15,5 +15,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  */
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long>, JpaSpecificationExecutor<Persona> {
-   
+   boolean existsByDni(String dni);
+   boolean existsByEmail(String email);
 }
